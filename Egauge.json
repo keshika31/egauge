@@ -1,0 +1,44 @@
+{
+    "id":"com.demo.egauge",
+    "version":"1.0.0",
+    "name": "Emission Gauge",
+    "newInstancePrefix": "Egauge",
+    "description": "Custom widget to show emission",
+    "webcomponents": [
+        {
+            "kind": "main",
+            "tag": "com-sap-sample-egauge",
+            "url": "",
+            "integrity": "",
+            "ignoreIntegrity": true
+        }
+    ],
+    "properties": {
+        "width": {
+            "type": "integer",
+            "default": 600
+        },
+        "height": {
+            "type": "integer",
+            "default":420
+        },
+        "value": {
+            "type": "integer",
+            "default": 0
+        }
+    },
+    "methods": {
+        "render": {
+            "description": "Set value of gauge",
+            "parameters": [
+                {
+                    "name": "value",
+                    "type": "number",
+                    "description": "New value"
+                }
+            ]
+        }
+    },
+    "event": {
+    }
+}

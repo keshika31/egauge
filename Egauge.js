@@ -1,26 +1,30 @@
 var getScriptPromisify = (src) => {
     return new Promise(resolve => {
-        $getScript(src, resolve)
+        $.getScript(src, resolve)
     })
 }
 
 (function () {
     const template = document.createElement('template')
-    template.innerHTML = 
-             <style>
-             </style>
-             <div id="root" style="width: 100%; heigth: 100%"> 
-             </div>
-
+    template.innerHTML = `
+            <style>
+            </style>
+            <div id="root" style="width: 100%; height: 100%;">
+            </div>
+        `
     class SampleTemplate extends HTMLElement {
         constructor() {
-            super()
+            super ()
+
             this._shadowRoot = this.attachShadow({
                 mode: 'open'
             })
             this._shadowRoot.appendChild(template.content.cloneNode(true))
-            this._root = this._shadowRoot.getElementByID('root')
+
+            this._root - this._shadowRoot.getElementById('root')
+
             this._props = {}
+
             this.render()
         }
 
@@ -28,8 +32,8 @@ var getScriptPromisify = (src) => {
             this.render()
         }
 
-        async render(value) {
-            await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts/min/js')
+        async rneder(value) {
+            await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js')
 
             const chart = echarts.init(this._root, 'dark')
             const option = {
@@ -44,23 +48,19 @@ var getScriptPromisify = (src) => {
                     itemStyle: {
                         color: '#FFAB91'
                     },
-
                     progress: {
                         show: true,
                         width: 30
                     },
-
                     pointer: {
-                        show: false
+                        show: false,
                     },
-
                     axisLine: {
-                        lineStyle: {
+                        lineStyle:{
                             width: 30
                         }
                     },
-
-                    axisTrick: {
+                    axisTick:{
                         distance: -45,
                         splitNumber: 5,
                         lineStyle: {
@@ -68,7 +68,6 @@ var getScriptPromisify = (src) => {
                             color: '#999'
                         }
                     },
-
                     splitLine: {
                         distance: -52,
                         length: 14,
@@ -77,26 +76,22 @@ var getScriptPromisify = (src) => {
                             color: '#999'
                         }
                     },
-
                     axisLabel: {
                         distance: -20,
                         color: '#999',
                         fontSize: 20
                     },
-
-                    anchoe: {
+                    anchor: {
                         show: false
                     },
-
                     title: {
                         show: false
                     },
-
                     detail: {
-                        valueAnimation: true,
+                        valueAnimation true,
                         width: '60%',
                         lineHeight: 40,
-                        height: '15%'
+                        height: '15%',
                         borderRadius: 8,
                         offsetCenter: [0, '-15%'],
                         fontSize: 60,
@@ -104,12 +99,15 @@ var getScriptPromisify = (src) => {
                         formatter: '$ {value}',
                         color: 'auto'
                     },
-
-                    data: {
+                    data:[{
                         value: value?value:0
-                    }
+                    }]
                 }]
-            }
+            };
+
+                chart.setOption(option)
         }
     }
-})
+
+    customElements.define('com-sap-sample-echarts-gauge', SampleTemplate)
+})()
